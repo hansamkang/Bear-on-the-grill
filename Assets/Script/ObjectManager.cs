@@ -127,6 +127,7 @@ public class ObjectManager : MonoBehaviour
                 region = mapData.getRegionPoint(x, y);
 
                 // region object들 생성
+                // 여기서 오류나면 MapManger의 지역과 여기 지역의 수가 달라서 나오는 에러임.
                 for(int i =0;i<regionObjectRatio[region].objectRatioType.Length; i++)
                 {
                     t += regionObjectRatio[region].objectRatioType[i].percentage;
@@ -139,7 +140,6 @@ public class ObjectManager : MonoBehaviour
                 
             }
         }
-        Debug.Log("루틴횟수:" + num);
         return map;
     }
 

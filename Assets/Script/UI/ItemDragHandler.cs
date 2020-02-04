@@ -40,13 +40,16 @@ public class ItemDragHandler : MonoBehaviour, IPointerDownHandler, IDragHandler,
             Debug.Log(targetSlot.getItem());
             Debug.Log(slot.getItem());
             slot.setItem(targetSlot.getItem());
-            slot.setNum(targetSlot.getNum());
             targetSlot.setItem(tempItem);
-            targetSlot.setNum(tempNum);
 
             slot.updateSlot();
             targetSlot.updateSlot();
         }
+        else
+        {
+            Debug.Log("엘스");
+        }
+
         transform.SetParent(startParent);
         transform.localPosition = Vector3.zero;
         image.raycastTarget = true;

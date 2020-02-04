@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Slot
   - Inventory
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -49,11 +50,11 @@ TagManager:
   - name: Object
     uniqueID: 3912283337
     locked: 0
-  - name: Item
-    uniqueID: 1380832687
-    locked: 0
   - name: Player Shadow
     uniqueID: 3276340993
+    locked: 0
+  - name: Item
+    uniqueID: 1380832687
     locked: 0
   - name: Player
     uniqueID: 2358974637

@@ -2,18 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Slot : MonoBehaviour
 {
     public Item item;
-    public int num=0;
 
-    Image image;
-    Text text;
+    protected Color originColor;
+    protected Image border;
+    protected Image image;
+    public Inventory inventory;
+    protected Text text;
+
+    public void Awake()
+    {
+        // Inventory 스크립트의 Start루틴에서 border를 건들여서 Awake에 옮김.
+        inventory = FindObjectOfType<Inventory>().GetComponent<Inventory>();
+        border = gameObject.transform.GetChild(0).GetComponent<Image>();
+        originColor = border.color;
+    }
+
     public void Start()
     {
         image = gameObject.transform.GetChild(0).GetChild(0).GetComponent<Image>();
         text = gameObject.transform.GetChild(1).GetComponent<Text>();
+        
     }
 
     public bool contain()
@@ -30,7 +43,12 @@ public class Slot : MonoBehaviour
 
     public void add()
     {
-        num++;
+        item.num++;
+    }
+
+    public void decrease()
+    {
+        item.num--;
     }
 
     public Item getItem()
@@ -40,19 +58,23 @@ public class Slot : MonoBehaviour
 
     public void setItem(Item item)
     {
-        this.item = item;
+        this.item = item;  
     }
 
     public int getNum()
     {
-        return this.num;
+        return this.item.num;
     }
 
     public void setNum(int num)
     {
-        this.num = num;
+        this.item.num = num;
     }
 
+    public void clearSlot()
+    {
+        item = null;
+    }
     
     public void updateSprite()
     {
@@ -70,17 +92,24 @@ public class Slot : MonoBehaviour
     
     public void updateNumberText()
     {
-        if (num == 0)
+        if (item == null)
         {
             text.text = "";
         }
         else {
-            text.text = num.ToString();
+            text.text = item.num.ToString();
         }
     }
 
     public void updateSlot()
     {
+        if (item != null)
+        {
+            if (item.num <= 0)
+            {
+                item = null;
+            }
+        }
         updateSprite();
         updateNumberText();
     }

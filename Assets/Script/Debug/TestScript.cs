@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
+    public Inventory inventory;
+    public Item testItem;
 
-    // Start is called before the first frame update
-    void Start()
+    public void addItem()
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        inventory.addItem(testItem);
     }
     
 }

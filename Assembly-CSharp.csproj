@@ -71,18 +71,24 @@
     <Compile Include="Assets\Script\Debug\TestItem.cs" />
     <Compile Include="Assets\Script\Debug\TestScript.cs" />
     <Compile Include="Assets\Script\Debug\TestTileGenerator.cs" />
-    <Compile Include="Assets\Script\Inventory.cs" />
+    <Compile Include="Assets\Script\InputManager.cs" />
     <Compile Include="Assets\Script\Item.cs" />
-    <Compile Include="Assets\Script\ItemClickHandler.cs" />
-    <Compile Include="Assets\Script\ItemDragHandler.cs" />
-    <Compile Include="Assets\Script\ItemDropHandler.cs" />
+    <Compile Include="Assets\Script\ItemManager.cs" />
     <Compile Include="Assets\Script\MapManager.cs" />
     <Compile Include="Assets\Script\Noise.cs" />
     <Compile Include="Assets\Script\Obejcts\MissingNO.cs" />
     <Compile Include="Assets\Script\ObjectC.cs" />
     <Compile Include="Assets\Script\ObjectManager.cs" />
     <Compile Include="Assets\Script\Player.cs" />
-    <Compile Include="Assets\Script\Slot.cs" />
+    <Compile Include="Assets\Script\TimeManager.cs" />
+    <Compile Include="Assets\Script\UI\Gauge.cs" />
+    <Compile Include="Assets\Script\UI\Inventory.cs" />
+    <Compile Include="Assets\Script\UI\InventorySlot.cs" />
+    <Compile Include="Assets\Script\UI\ItemClickHandler.cs" />
+    <Compile Include="Assets\Script\UI\ItemDragHandler.cs" />
+    <Compile Include="Assets\Script\UI\ItemDropHandler.cs" />
+    <Compile Include="Assets\Script\UI\Slot.cs" />
+    <Compile Include="Assets\Script\WeatherManager.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/hansa/Documents/Unity/Bear on the grill/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

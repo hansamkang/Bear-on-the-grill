@@ -34,16 +34,16 @@ public class MapManager : MonoBehaviour
 
     private void OnEnable()
     {
+        
         // 맵 데이터 생성
         mapData = generateMap();
     }
     // Start is called before the first frame update
     void Start()
     {
-        // 지역 생성을 위해 설정한 regions를 정렬
-        sortRegion();
+        // 지역 생성을 위해 설정한 regions를
         //swapRegion(ref regions[0], ref regions[1]);
-        debugSort();
+        debugSame();
         // 플레이어가 위치한 섹터 파악 후 해당 섹터 표현
         cps = player.getSector(sectorSize);
         drawSector(cps);
@@ -102,23 +102,27 @@ public class MapManager : MonoBehaviour
     // Map 생성 함수
     Map generateMap()
     {
+        sortRegion();
         // 맵 환경요소값 생성
         float[,] height = Noise.generate(mapSize, mapSize, seed, noiseScale, octaves, persistance, lacunarity, offset);
         float[,] temperature = Noise.generate(mapSize, mapSize, seed + 1, noiseScale, octaves, persistance, lacunarity, offset);
         float[,] humidity = Noise.generate(mapSize, mapSize, seed + 2, noiseScale, octaves, persistance, lacunarity, offset);
         int[,] regionMap = new int[mapSize, mapSize];
-
+        
         for (int y = 0; y < mapSize; y++)
         {
             for (int x = 0; x < mapSize; x++)
             {
+                // 초기화 
+                regionMap[x, y] = -1;
+
                 float currentheight = height[x, y];
                 float currentTemperature = temperature[x, y];
                 float currentHumidity = humidity[x, y];
-
+               
                 for (int i = 0; i < regions.Length; i++)
                 {
-                    if (currentTemperature <= regions[i].height && currentTemperature <= regions[i].temperature && currentHumidity <= regions[i].humidity)
+                    if (currentheight <= regions[i].height && currentTemperature <= regions[i].temperature && currentHumidity <= regions[i].humidity)
                     {
                         regionMap[x, y] = i;
                         break;
@@ -143,6 +147,10 @@ public class MapManager : MonoBehaviour
                 wantY = y + sectorSize * (int)(sector.y + (mapSize / sectorSize / 2));
 
                 i = mapData.getRegionPoint(wantX, wantY);
+
+                // 오류로 인하여 해당 맵의 데이터가 존재 하지 않을 경우.
+                if (i == -1) continue;
+
                 map.SetTile(new Vector3Int(x - (sectorSize / 2) + (int)(sector.x * sectorSize), y - (sectorSize / 2) + (int)(sector.y * sectorSize), 0), regions[i].tileBase);
             }
         }
@@ -213,15 +221,24 @@ public class MapManager : MonoBehaviour
         }
 
     }
+
+    // 디버그용 삭제 가능
+    void debugSame()
+    {
+        for(int i= 0;i <10; i++)
+        {
+            for(int j=0; j< 10; j++)
+            {
+            }
+        }
+        
+    }
     // region 정렬을 위한 swap 함수
     void swapRegion(ref TileType a, ref TileType b)
     {
         TileType temp = b;
-        Debug.Log(temp.name);
         b = a;
-        Debug.Log(b.name);
         a = temp;
-        Debug.Log(a.name);
     }
     public ref Map getMapData()
     {
