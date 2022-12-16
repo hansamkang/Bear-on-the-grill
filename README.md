@@ -1,7 +1,7 @@
 # Survival_Game_Practice
 생존게임관련 시스템들 구현 및 연습.
 
-# Script 바로가기
+# 작성 Script로 바로가기
 https://github.com/hansamkang/Survival_Game_Practice/tree/master/Assets/Script
 
 ## 구현내용
